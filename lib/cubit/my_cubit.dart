@@ -15,4 +15,11 @@ class MyCubit extends Cubit<MyState> {
       emit(GetAllUsers(usersList));
     } );
   }
+
+  void emitGetUserDetails (userId) {
+    //عشان لما باجي ا اميت اليوزر ديتلز لازم اباصي الاي دي بايدي
+    myRepo.getUserById(userId).then((userDetails) {
+      emit(GetUserDetails(userDetails));
+    } );
+  }
 }

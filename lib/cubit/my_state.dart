@@ -11,3 +11,9 @@ final class MyInitial extends MyState {}
 
   GetAllUsers(this.allUsersList);
  }
+
+class GetUserDetails extends MyState {
+ final UsersModel userDetails ;
+
+ GetUserDetails(this.userDetails);
+}

@@ -17,6 +17,14 @@ Future<List<UsersModel>> getAllUsers () async {
   //وبعدين حول الاوبجيكت يوزر ده لليستا وهكذا مع كل الاوبجيكتس
   return response.map((userObject) =>
            UsersModel.fromJson(userObject.toJson()) ).toList();
- }
- //ودلوقتي هاخد من الريبو للكيوبت واعمل البلوك بيلدر واقرا الداتا
   }
+
+Future<UsersModel> getUserById ( userId ) async {
+  var response = await webServices.getUserById( userId );
+  //استخدمت الكونستراكتور بتاع الفروم جيسون اللي هباصيله الاوبجيكت اللي راجعلي من الجيسون وحوله لاوبجيكت من دارت عادي كي وماب
+  return UsersModel.fromJson(response.toJson()) ;
+ }
+
+
+  //ودلوقتي هاخد من الريبو للكيوبت واعمل البلوك بيلدر واقرا الداتا
+}

@@ -30,7 +30,7 @@ import 'package:get_it/get_it.dart';
   //هظبط اعدادات الديو
   dio
   //أقصى وقت مسموح للمحاولة إنه يتصل بالسيرفر.
-  ..options.connectTimeout = const Duration(seconds: 1 )
+  ..options.connectTimeout = const Duration(seconds: 5 )
    //أقصى وقت مسموح لانتظار الداتا من السيرفر.
   ..options.receiveTimeout = const Duration(seconds: 10 );
 
