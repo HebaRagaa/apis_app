@@ -1,6 +1,7 @@
 
   import 'package:apis_app/users_model.dart';
 import 'package:apis_app/web_services.dart';
+import 'package:retrofit/dio.dart';
 
 class MyRepo {
 final WebServices webServices ;
@@ -35,6 +36,14 @@ Future<UsersModel> createNewUser (UsersModel newUser ) async {
   //ولازم اعرفه نوع الاوث  ولو توكين اقول نوعه بيرل مثلا واكتبه اينعم ده مش امن بس دلوقتي فهم وكتابة كود
  return await webServices.createNewUser(
       newUser, 'Bearer 79f27dbfed47155ce1068f03390aa69f71e4077274563a753d0c9e2fbfcba659');
+
+  }
+
+
+  Future<HttpResponse> deleteUser (String id ) async {
+    //ولازم اعرفه نوع الاوث  ولو توكين اقول نوعه بيرل مثلا واكتبه اينعم ده مش امن بس دلوقتي فهم وكتابة كود
+    return await webServices.deleteUser(
+        id , 'Bearer 79f27dbfed47155ce1068f03390aa69f71e4077274563a753d0c9e2fbfcba659');
 
   }
 

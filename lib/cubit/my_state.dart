@@ -18,10 +18,18 @@ class GetUserDetails extends MyState {
  GetUserDetails(this.userDetails);
 }
 
-class CreateNewUser extends MyState {
+ class CreateNewUser extends MyState {
  final UsersModel newUser ;
 
  CreateNewUser(this.newUser);
+}
+
+
+class DeleteUser extends MyState {
+ //هسمي اللي راجعلي داتا او اي حاجه لان ده ديليت
+ final dynamic data ;
+
+ DeleteUser(this.data);
 }
 
 

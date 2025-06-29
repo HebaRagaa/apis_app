@@ -28,14 +28,17 @@ import 'package:flutter/material.dart';
     //BlocProvider.of<MyCubit>(context).emitGetUserDetails(7967954);
 
       //ودلوقتي هنعمل بتاع البوست اللي هى كرييت نيو يوزر
-      BlocProvider.of<MyCubit>(context).emitCreateNewUser( UsersModel(
-        name: 'Flutter Queen' ,
-        //لو عملت رن مره مثلا بالايميل وجيت اعمل مره تاني بالنيم هيظهر ايرور
-        //لاني لازم اغير ف الايميل عشان ابقى كريت نيو يوزر
-        email: 'flutterQueen@gmail.com' ,
-        gender: 'female' ,
-        status: 'active' ,
-      ));
+      // BlocProvider.of<MyCubit>(context).emitCreateNewUser( UsersModel(
+      //   name: 'Flutter Queen' ,
+      //   //لو عملت رن مره مثلا بالايميل وجيت اعمل مره تاني بالنيم هيظهر ايرور
+      //   //لاني لازم اغير ف الايميل عشان ابقى كريت نيو يوزر
+      //   email: 'flutterQueen@gmail.com' ,
+      //   gender: 'female' ,
+      //   status: 'active' ,
+      // ));
+
+      //وهنا هعمل البلوك بتاع الديليت
+      BlocProvider.of<MyCubit>(context).emitDeleteUser('7967954');
 
 
     }
@@ -116,6 +119,27 @@ import 'package:flutter/material.dart';
                 );
               }}
             ),
+
+          //ده للديليت يوزر
+            //اه ولو عملت رن تاني مش هيظهر حاجه واحتمال هيبقى ايرور لان اليوزر اللي كاتبه اتميح اصلا
+            BlocBuilder<MyCubit, MyState > (builder: (context, state ) {
+              if (state is DeleteUser ) {
+                //همسح السطر ده لاني مش هخزن حاجه
+               // user = (state).newUser ;
+                return  Container(
+                  height: 50,
+                  color: Colors.amber,
+                  child: Center(
+                    child: Text((state ).data.toString() ),
+                  ),
+                );
+              } else {
+                return Center(
+                  child: CircularProgressIndicator(),
+                );
+              }}
+            ),
+
 
 
           ],

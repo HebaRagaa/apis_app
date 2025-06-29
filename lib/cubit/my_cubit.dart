@@ -30,5 +30,15 @@ class MyCubit extends Cubit<MyState> {
     } );
   }
 
+  //ده تعريف الفانكشن معناه: الفانكشن بتاخد متغير من نوع String اسمه id
+  void emitDeleteUser (String id) {
+    //عشان لما باجي ا اميت الديليت يوزر لازم اباصي الباث اللي هو الاسترنج اي دي
+    //هنا إنتي بتمرير قيمة المتغير id اللي جاي من فوق
+    // كـ argument للفانكشن deleteUser
+    myRepo.deleteUser( id).then((data) {
+      emit(DeleteUser(data ));
+    } );
+  }
+
 
 }
