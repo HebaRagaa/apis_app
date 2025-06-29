@@ -17,7 +17,10 @@ Future<List<UsersModel>> getAllUsers () async {
   //وبعدين حول الاوبجيكت يوزر ده لليستا وهكذا مع كل الاوبجيكتس
   return response.map((userObject) =>
            UsersModel.fromJson(userObject.toJson()) ).toList();
-  }
+  }//الريتروفيت بتعمل هى كل حاجه تحول من جيسون تو جيسون يعني كان ممكن اخر سطر اخليه ريترن ريسبونس بس
+  //او اخلي اول سطر بتاع الفيوتشر والغي الاتنين التانيين واكتب ريترن واخد السطر الاول من اول اويت والويب والجيت 
+
+
 
 Future<UsersModel> getUserById ( userId ) async {
   var response = await webServices.getUserById( userId );
@@ -25,6 +28,15 @@ Future<UsersModel> getUserById ( userId ) async {
   return UsersModel.fromJson(response.toJson()) ;
  }
 
+
+ //هنا عملت الطريقه اللي كنت بقول عليها بتاع العادي والاختصار طالما مستعمله ريتروفيت
+//او اخلي اول سطر بتاع الفيوتشر والغي الاتنين التانيين واكتب ريترن واخد السطر الاول من اول اويت والويب والجيت
+Future<UsersModel> createNewUser (UsersModel newUser ) async {
+  //ولازم اعرفه نوع الاوث  ولو توكين اقول نوعه بيرل مثلا واكتبه اينعم ده مش امن بس دلوقتي فهم وكتابة كود
+ return await webServices.createNewUser(
+      newUser, 'Bearer 79f27dbfed47155ce1068f03390aa69f71e4077274563a753d0c9e2fbfcba659');
+
+  }
 
   //ودلوقتي هاخد من الريبو للكيوبت واعمل البلوك بيلدر واقرا الداتا
 }

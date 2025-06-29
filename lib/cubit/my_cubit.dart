@@ -22,4 +22,13 @@ class MyCubit extends Cubit<MyState> {
       emit(GetUserDetails(userDetails));
     } );
   }
+
+  void emitCreateNewUser (newUser) {
+    //عشان لما باجي ا اميت اليوزر ديتلز لازم اباصي النيو يوزر
+    myRepo.createNewUser(newUser).then((newUser) {
+      emit(CreateNewUser(newUser));
+    } );
+  }
+
+
 }

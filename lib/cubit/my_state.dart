@@ -17,3 +17,11 @@ class GetUserDetails extends MyState {
 
  GetUserDetails(this.userDetails);
 }
+
+class CreateNewUser extends MyState {
+ final UsersModel newUser ;
+
+ CreateNewUser(this.newUser);
+}
+
+

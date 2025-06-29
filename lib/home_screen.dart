@@ -25,7 +25,18 @@ import 'package:flutter/material.dart';
     //BlocProvider.of<MyCubit>(context).emitGetAllUsers();
     //المفروض انك تعمل ايه ربي اي كول ترجعلك ليستا من اليوزرز تاخد واحد منه تباصي الاي دي بتاعه
     //تعمل فاليوبل تخزنه فيه وتباصيه
-     BlocProvider.of<MyCubit>(context).emitGetUserDetails(7967954);
+    //BlocProvider.of<MyCubit>(context).emitGetUserDetails(7967954);
+
+      //ودلوقتي هنعمل بتاع البوست اللي هى كرييت نيو يوزر
+      BlocProvider.of<MyCubit>(context).emitCreateNewUser( UsersModel(
+        name: 'Flutter Queen' ,
+        //لو عملت رن مره مثلا بالايميل وجيت اعمل مره تاني بالنيم هيظهر ايرور
+        //لاني لازم اغير ف الايميل عشان ابقى كريت نيو يوزر
+        email: 'flutterQueen@gmail.com' ,
+        gender: 'female' ,
+        status: 'active' ,
+      ));
+
 
     }
 
@@ -67,23 +78,45 @@ import 'package:flutter/material.dart';
             // ),
 
             //ودي بقو بتاع الباث واليوزر ديتلز لاوبجيكت واحد من الليست نفس الحاجه بشوية تعديلات
+            // BlocBuilder<MyCubit, MyState > (builder: (context, state ) {
+            //   if (state is GetUserDetails ) {
+            //     //هعمل فوق يوزر فاضي مش ليستا
+            //     user = (state).userDetails ;
+            //     return  Container(
+            //             height: 50,
+            //             color: Colors.amber,
+            //             child: Center(
+            //               child: Text( user.name.toString() ),
+            //             ),
+            //           );
+            //   } else {
+            //     return Center(
+            //       child: CircularProgressIndicator(),
+            //     );
+            //   }}
+            // ),
+
+            //وده للبوست ف الكرييت نيو يوزر
+           //لو عملت رن مره مثلا بالايميل وجيت اعمل مره تاني بالنيم هيظهر ايرور
+            //لاني لازم اغير ف الايميل عشان ابقى كريت نيو يوزر
             BlocBuilder<MyCubit, MyState > (builder: (context, state ) {
-              if (state is GetUserDetails ) {
+              if (state is CreateNewUser ) {
                 //هعمل فوق يوزر فاضي مش ليستا
-                user = (state).userDetails ;
+                user = (state).newUser ;
                 return  Container(
-                        height: 50,
-                        color: Colors.amber,
-                        child: Center(
-                          child: Text( user.name.toString() ),
-                        ),
-                      );
+                  height: 50,
+                  color: Colors.amber,
+                  child: Center(
+                    child: Text( user.email.toString() ),
+                  ),
+                );
               } else {
                 return Center(
                   child: CircularProgressIndicator(),
                 );
               }}
             ),
+
 
           ],
         ),
