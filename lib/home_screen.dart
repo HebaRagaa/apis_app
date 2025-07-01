@@ -1,6 +1,8 @@
 
 
   import 'package:apis_app/cubit/my_cubit.dart';
+import 'package:apis_app/cubit/result_state.dart';
+import 'package:apis_app/network_exceptions.dart';
 import 'package:apis_app/users_model.dart';
 import 'package:flutter/material.dart';
   import 'package:flutter_bloc/flutter_bloc.dart';
@@ -102,44 +104,63 @@ import 'package:flutter/material.dart';
             //وده للبوست ف الكرييت نيو يوزر
            //لو عملت رن مره مثلا بالايميل وجيت اعمل مره تاني بالنيم هيظهر ايرور
             //لاني لازم اغير ف الايميل عشان ابقى كريت نيو يوزر
-            BlocBuilder<MyCubit, MyState > (builder: (context, state ) {
-              if (state is CreateNewUser ) {
-                //هعمل فوق يوزر فاضي مش ليستا
-                user = (state).newUser ;
-                return  Container(
-                  height: 50,
-                  color: Colors.amber,
-                  child: Center(
-                    child: Text( user.email.toString() ),
-                  ),
-                );
-              } else {
-                return Center(
-                  child: CircularProgressIndicator(),
-                );
-              }}
-            ),
+            BlocBuilder<MyCubit, ResultState<List<UsersModel>> >
+              (builder: (context, ResultState<List<UsersModel>> state ) {
+                return state.when (idle : () {
+           return const Center(child: CircularProgressIndicator(),) ;
+      } , loading : () {
+      return const Center(child: CircularProgressIndicator(),) ;
+      } , success : (UsersModel userData) {
+           return Container(
+           height: 50, color: Colors.grey,
+      child: Center( child: Text(userData.name.toString(),
+      style: TextStyle(color: Colors.white),),
+      ),
+           );
+                } , error : (NetworkExceptions error ) {
+             return Center(child: Text(NetworkExceptions.getErrorMessage(error))
+      ,) ;
+      }
 
-          //ده للديليت يوزر
-            //اه ولو عملت رن تاني مش هيظهر حاجه واحتمال هيبقى ايرور لان اليوزر اللي كاتبه اتميح اصلا
-            BlocBuilder<MyCubit, MyState > (builder: (context, state ) {
-              if (state is DeleteUser ) {
-                //همسح السطر ده لاني مش هخزن حاجه
-               // user = (state).newUser ;
-                return  Container(
-                  height: 50,
-                  color: Colors.amber,
-                  child: Center(
-                    child: Text((state ).data.toString() ),
-                  ),
-                );
-              } else {
-                return Center(
-                  child: CircularProgressIndicator(),
-                );
-              }}
-            ),
+      )
 
+              // if (state is CreateNewUser ) {
+              //   //هعمل فوق يوزر فاضي مش ليستا
+              //   user = (state).newUser ;
+              //   return  Container(
+              //     height: 50,
+              //     color: Colors.amber,
+              //     child: Center(
+              //       child: Text( user.email.toString() ),
+              //     ),
+              //   );
+              // } else {
+              //   return Center(
+              //     child: CircularProgressIndicator(),
+              //   );
+              // }}
+            ),
+          //
+          // //ده للديليت يوزر
+          //   //اه ولو عملت رن تاني مش هيظهر حاجه واحتمال هيبقى ايرور لان اليوزر اللي كاتبه اتميح اصلا
+          //   BlocBuilder<MyCubit, MyState > (builder: (context, state ) {
+          //     if (state is DeleteUser ) {
+          //       //همسح السطر ده لاني مش هخزن حاجه
+          //      // user = (state).newUser ;
+          //       return  Container(
+          //         height: 50,
+          //         color: Colors.amber,
+          //         child: Center(
+          //           child: Text((state ).data.toString() ),
+          //         ),
+          //       );
+          //     } else {
+          //       return Center(
+          //         child: CircularProgressIndicator(),
+          //       );
+          //     }}
+          //   ),
+          //
 
 
           ],
